@@ -1,0 +1,19 @@
+version: "3.8"  # optional since v1.27.0
+services:
+  nanosurvey:
+    build: .
+    ports:
+      - "5001:80"
+    depends_on: 
+      - "postgres"
+    networks: ['mynetwork']
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "randompass123"
+      POSTGRES_DB: "postgres"
+    networks: ['mynetwork']
+networks: {mynetwork: {}}
